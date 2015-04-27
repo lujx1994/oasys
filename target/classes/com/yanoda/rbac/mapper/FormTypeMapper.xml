@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yanoda.rbac.mapper.FormTypeMapper">
+
+	<resultMap id="FormTypeResultMap" type="com.yanoda.rbac.domain.FormType">
+		<id column="id" property="id" />
+		<result column="name" property="name" />
+		<collection property="formList" resultMap="FormResult" />
+	</resultMap>
+
+	<resultMap id="FormResult" type="com.yanoda.rbac.domain.Form">
+		<id property="id" column="form_id" />
+		<result property="name" column="form_name" />
+		<result property="type_id" column="form_type_id" />
+		<result property="content" column="form_content" />
+	</resultMap>
+
+	<select id="getFormType" parameterType="com.yanoda.rbac.domain.FormType"
+		resultMap="FormTypeResultMap">
+		SELECT
+		formtype.id as id, 
+		formtype.name as name, 
+		form.id as form_id, 
+		form.name as form_name,
+		form.type_id as form_type_id,
+		form.content as form_content 
+		From formtype
+		INNER JOIN form
+		ON formtype.id = form.type_id
+		ORDER BY
+		formtype.id
+	</select>
+
+
+</mapper>
+
+
+

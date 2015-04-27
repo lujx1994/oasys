@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yanoda.rbac.mapper.DefaultFlowMapper">
+
+	<select id="getSelectActive" parameterType="map" resultType="com.yanoda.rbac.domain.DefaultFlow">
+		SELECT * FROM defaultflow WHERE workform_id = ${workform_id} and department_id = ${department}
+	</select>
+
+
+</mapper>
